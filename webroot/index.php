@@ -57,8 +57,7 @@ if (!defined('APP_DIR')) {
  * The following line differs from its sibling
  * /app/webroot/index.php
  */
-define('CAKE_CORE_INCLUDE_PATH', 'D:' . DS . 'DocumentRoot' . DS . 'Cake2' . DS . 'lib');
-
+define('CAKE_CORE_INCLUDE_PATH', 'C:' . DS . 'xampp' . DS . 'htdocs' . DS . 'cake2'. DS . 'lib');
 /**
  * This auto-detects CakePHP as a composer installed library.
  * You may remove this if you are not planning to use composer (not recommended, though).
@@ -87,7 +86,6 @@ if (PHP_SAPI === 'cli-server') {
 	}
 	$_SERVER['PHP_SELF'] = '/' . basename(__FILE__);
 }
-
 if (!defined('CAKE_CORE_INCLUDE_PATH')) {
 	if (function_exists('ini_set')) {
 		ini_set('include_path', ROOT . DS . 'lib' . PATH_SEPARATOR . ini_get('include_path'));
