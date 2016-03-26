@@ -1,22 +1,27 @@
 <?php
 App::uses('AppController', 'Controller');
 
-class CustomersController extends AppController {
+class DashboardController extends AppController {
 
 	public $components = array('Paginator');
 
     public function beforeRender()
     {
-        $this->set('__module_title__', 'Customers');
-        $this->set('__action_title__', 'List Customers');
+        $this->set('baseUrl', Router::url('/'));
+        $this->set('baseUrlDashboard', Router::url('/dashboard/'));
     }
 
     public function index()
     {
-
+        
     }
 
     public function add()
+    {
+        
+    }
+    
+    public function profile()
     {
         
     }

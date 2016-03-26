@@ -5,18 +5,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>MAMI</title>
+    <title>Zenopati</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
     <?php
     echo $this->Html->css(array(
-        '/bootstrap/css/bootstrap.min.css',
-        'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
-        'AdminLTE.min',
-        'skins/skin-green.min',
-        'app'
+        'bootstrap.min',
+        'animate' ,
+        'font-awesome' ,
+        'graph' ,
+        'style' ,
+        'icon-font.min' ,
     ));
     ?>
 
@@ -28,105 +30,102 @@
     <![endif]-->
 
 </head>
+<body class="sticky-header left-side-collapsed">
+    <section>
+        <div class="left-side sticky-left-side">
 
-<body class="hold-transition skin-green layout-top-nav">
-
-    <div class="wrapper">
-        
-        <header class="main-header">
-            <nav class="navbar navbar-static-top">
-                <div class="container">
-                    
-                    <div class="navbar-header">
-                        <a href="../../index2.html" class="navbar-brand">MAMI</a>
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </div>
-
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href="#"><i class="fa fa-users"></i> &nbsp; Customers <span class="sr-only">(current)</span></a>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                    <!-- Navbar Right Menu -->
-                    <div class="navbar-custom-menu">
-                        
-                        <ul class="nav navbar-nav">
-                            
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="hidden-xs">
-                                        <span class="glyphicon glyphicon-user"></span> &nbsp; Alexander Pierce
-                                    </span>
-                                </a>
-                            </li>
-
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="hidden-xs">
-                                        <span class="glyphicon glyphicon-off"></span> &nbsp; Logout
-                                    </span>
-                                </a>
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-            </nav>
-        </header>
-
-        <div class="content-wrapper">
-            <div class="container">
-                
-                <section class="content-header">
-                    <h1>
-                        <?php echo $__module_title__; ?> 
-                        <small><?php echo $__action_title__; ?></small>
-                    </h1>
-                </section>
-
-                <!-- Main content -->
-                <section class="content">
-
-                    <div class="row">
-                        
-                        <!-- START -->
-                        <?php
-                        echo $this->fetch('content');
-                        ?>
-                        <!-- END -->
-
-                    </div>
-
-                </section>
-            
+            <!--logo and iconic logo start-->
+            <div class="logo">
+                <h1><a href="<?php echo $baseUrlDashboard;?>">ZENOPATI</a></h1>
+            </div>
+            <div class="logo-icon text-center">
+                <a href="<?php echo $baseUrlDashboard;?>"><i class="lnr lnr-home"></i> </a>
             </div>
 
+            <!--logo and iconic logo end-->
+            <div class="left-side-inner">
+
+                <!--sidebar nav start-->
+                    <ul class="nav nav-pills nav-stacked custom-nav">
+                        <li class="active"><a href="<?php echo $baseUrlDashboard.'profile';?>"><i class="lnr lnr-power-switch"></i><span>Profile</span></a></li>
+                        <li class="menu-list">
+                            <a href="#"><i class="lnr lnr-cog"></i>
+                                <span>Products</span></a>
+                                <ul class="sub-menu-list">
+                                    <li><a href="grids.html">List Products</a> </li>
+                                    <li><a href="widgets.html">Add Products</a></li>
+                                </ul>
+                        </li>
+                        <li><a href="#"><i class="lnr lnr-spell-check"></i> <span>Purchase Order</span></a></li>
+                        <li><a href="tables.html"><i class="lnr lnr-menu"></i> <span>Order History</span></a></li>
+                        <li><a href="tables.html"><i class="lnr lnr-indent-increase"></i> <span>Dispute</span></a></li>
+                    </ul>
+                <!--sidebar nav end-->
+            </div>
         </div>
+        
+        <div class="main-content">
+            <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+            <div class="header-section">
+                         
+                <!--toggle button start-->
+                <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+                <!--toggle button end-->
 
-    </div>
-
+                <!--notification menu start -->
+                <div class="menu-right">
+                    <div class="user-panel-top">  	
+                        <div class="profile_details_left">
+                            <h1>Zenopati</h1>
+                        </div>
+                        <div class="profile_details">		
+                            <ul>
+                                <li class="dropdown profile_details_drop">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <div class="profile_img">	
+                                            <span style="background:url(images/1.jpg) no-repeat center"> </span> 
+                                             <div class="user-name">
+                                                <p>Michael<span>Administrator</span></p>
+                                             </div>
+                                             <i class="lnr lnr-chevron-down"></i>
+                                             <i class="lnr lnr-chevron-up"></i>
+                                            <div class="clearfix"></div>	
+                                        </div>	
+                                    </a>
+                                    <ul class="dropdown-menu drp-mnu">
+                                        <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
+                                        <li> <a href="#"><i class="fa fa-user"></i>Profile</a> </li> 
+                                        <li> <a href="sign-up.html"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                                    </ul>
+                                </li>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>		         	
+                    </div>
+                </div>
+            </div>
+            <div id="page-wrapper">
+            <?php 
+                echo $this->fetch('content');
+            ?>
+            </div>
+        </div>
+    </section>
+</body>
 <?php
 echo $this->Html->script(array(
-    '/plugins/jQuery/jQuery-2.1.4.min.js',
-    '/bootstrap/js/bootstrap.min.js',
-    '/plugins/slimScroll/jquery.slimscroll.min.js',
-    '/plugins/fastclick/fastclick.min.js',
-    'app.min'
+    'easy/Chart' ,
+    'easy/wow.min' ,
+    'easy/jquery-1.10.2.min' ,
+    'easy/classie' ,
+    'easy/uisearch' ,
+    'easy/jquery.flot.min' ,
+    'easy/jquery.nicescroll' ,
+    'easy/scripts' ,
+    'easy/bootstrap.min.js',
 ));
 ?>
 
 <?php
 echo $this->fetch('scriptBottom');
 ?>
-
-</body>
-</html>
