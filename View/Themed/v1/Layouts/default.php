@@ -19,6 +19,8 @@
         'graph' ,
         'style' ,
         'icon-font.min' ,
+        'parsley' ,
+        'dropzone' ,
     ));
     ?>
 
@@ -36,10 +38,10 @@
 
             <!--logo and iconic logo start-->
             <div class="logo">
-                <h1><a href="<?php echo $baseUrlDashboard;?>">ZENOPATI</a></h1>
+                <h1><a href="<?php echo $baseUrlDashboard.'customer';?>">List Menu</a></h1>
             </div>
             <div class="logo-icon text-center">
-                <a href="<?php echo $baseUrlDashboard;?>"><i class="lnr lnr-home"></i> </a>
+                <a href="<?php echo $baseUrlDashboard.'customer';?>"><i class="lnr lnr-home"></i> </a>
             </div>
 
             <!--logo and iconic logo end-->
@@ -47,18 +49,18 @@
 
                 <!--sidebar nav start-->
                     <ul class="nav nav-pills nav-stacked custom-nav">
-                        <li class="active"><a href="<?php echo $baseUrlDashboard.'profile';?>"><i class="lnr lnr-power-switch"></i><span>Profile</span></a></li>
+                        <li class="active"><a href="<?php echo $baseUrlDashboard.'profile';?>"><i class="lnr lnr-power-switch"></i><span>Company Profile</span></a></li>
                         <li class="menu-list">
                             <a href="#"><i class="lnr lnr-cog"></i>
                                 <span>Products</span></a>
                                 <ul class="sub-menu-list">
-                                    <li><a href="grids.html">List Products</a> </li>
-                                    <li><a href="widgets.html">Add Products</a></li>
+                                    <li><a href="<?php echo $baseUrlDashboard.'products';?>">List Products</a> </li>
+                                    <li><a href="<?php echo $baseUrlDashboard.'products/add/step-1';?>">Add Products</a></li>
                                 </ul>
                         </li>
-                        <li><a href="#"><i class="lnr lnr-spell-check"></i> <span>Purchase Order</span></a></li>
-                        <li><a href="tables.html"><i class="lnr lnr-menu"></i> <span>Order History</span></a></li>
-                        <li><a href="tables.html"><i class="lnr lnr-indent-increase"></i> <span>Dispute</span></a></li>
+                        <li><a href="<?php echo $baseUrlDashboard.'purchase-order';?>"><i class="lnr lnr-spell-check"></i> <span>Purchase Order</span></a></li>
+                        <li><a href=<?php echo $baseUrlDashboard.'order-history';?>"><i class="lnr lnr-menu"></i> <span>Order History</span></a></li>
+                        <li><a href="<?php echo $baseUrlDashboard.'dispute';?>"><i class="lnr lnr-indent-increase"></i> <span>Dispute</span></a></li>
                     </ul>
                 <!--sidebar nav end-->
             </div>
@@ -74,18 +76,20 @@
 
                 <!--notification menu start -->
                 <div class="menu-right">
-                    <div class="user-panel-top">  	
+                    <div class="user-panel-top"> 
+                        <!--
                         <div class="profile_details_left">
-                            <h1>Zenopati</h1>
+                            <h1><?php echo ucfirst($companyName);?></h1>
                         </div>
+                        -->
                         <div class="profile_details">		
                             <ul>
                                 <li class="dropdown profile_details_drop">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <div class="profile_img">	
-                                            <span style="background:url(images/1.jpg) no-repeat center"> </span> 
+                                            <span > </span> 
                                              <div class="user-name">
-                                                <p>Michael<span>Administrator</span></p>
+                                                <p>Admin<span>Administrator</span></p>
                                              </div>
                                              <i class="lnr lnr-chevron-down"></i>
                                              <i class="lnr lnr-chevron-up"></i>
@@ -95,7 +99,7 @@
                                     <ul class="dropdown-menu drp-mnu">
                                         <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
                                         <li> <a href="#"><i class="fa fa-user"></i>Profile</a> </li> 
-                                        <li> <a href="sign-up.html"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                                        <li> <a href="<?php echo $baseUrlDashboard.'logout';?>"><i class="fa fa-sign-out"></i> Logout</a> </li>
                                     </ul>
                                 </li>
                                 <div class="clearfix"> </div>
@@ -106,6 +110,8 @@
             </div>
             <div id="page-wrapper">
             <?php 
+                echo $this->Session->flash('flash');
+                echo $this->Session->flash('auth');
                 echo $this->fetch('content');
             ?>
             </div>
@@ -116,13 +122,16 @@
 echo $this->Html->script(array(
     'easy/Chart' ,
     'easy/wow.min' ,
+    'easy/dropzone' ,
     'easy/jquery-1.10.2.min' ,
+    'validation/parsley.min' ,
     'easy/classie' ,
     'easy/uisearch' ,
     'easy/jquery.flot.min' ,
     'easy/jquery.nicescroll' ,
+    'dropzone/dropzone',
     'easy/scripts' ,
-    'easy/bootstrap.min.js',
+    'easy/bootstrap.min.js'
 ));
 ?>
 

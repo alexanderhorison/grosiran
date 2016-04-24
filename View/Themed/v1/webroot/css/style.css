@@ -576,7 +576,7 @@ footer  p a:hover{
     display: none;
 }
 div#page-wrapper {
-    padding:2em 2em;
+    padding:4.6em 1em;
 }
 .left-side-collapsed .logo-icon {
     height: 51px;
@@ -1773,7 +1773,7 @@ ul.dropdown-menu.drp-mnu li a i {
 }
 .profile_details ul li{
 	list-style-type:none;
-	width:87%;
+	width:100%;
 }
 .user-name p{
 	font-size:14px;
@@ -2522,11 +2522,15 @@ text.highcharts-yaxis-title {
   font-weight: 600;
 }
 .panel .panel-heading .panel-title {
-  font-size: 14px;
+  font-size: 30px;
   float: left;
   margin: 0;
   padding: 0;
   font-weight: 600;
+}
+.title-form{
+    border-bottom : solid black 4px;
+    color:#000;
 }
 h4.asd label {
     font-size: 1em;
@@ -2535,9 +2539,11 @@ h4.asd label {
 	cursor: pointer;
 }
 .panel-heading {
-  padding:32px 2em 0px;
+  padding:30px 10px 60px 40px;
   border-top-left-radius:0 !important;
   border-top-right-radius: 0 !important;
+  height:40px;
+  #background: #fff url("../files/images/3.jpg") no-repeat fixed center;
 }
 .stats-info ul {
   margin: 0;
@@ -2553,7 +2559,7 @@ h4.asd label {
   color: #999;
 }
 .panel-title {
-  font-size: 20px;
+  font-size: 30px;
   color: #000;
 }
 .stats-info ul li.last{
@@ -2801,7 +2807,7 @@ canvas#doughnut, canvas#line, canvas#polarArea, #bar, #pie, #radar{
     background: #8BC34A !important;
 }
 .control2{
-  height:253px;
+  height:153px;
 }
 .alert-info {
   color: #31708f;
@@ -2862,6 +2868,9 @@ button.note-color-btn {
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
   border-top: none !important;
+}
+.tab-content{
+    padding-top:30px;
 }
 .tab-content > .active {
   display: block;
@@ -2958,6 +2967,8 @@ span.badge1 {
   font-size: 0.85em;
   color: #555;
   line-height: 1.8em;
+  margin-left: 35px;
+  margin-right: 35px;
 }
 .bs-example-modal {
   background-color: #fff !important;
@@ -3113,7 +3124,9 @@ select[multiple] {
   font-size: 14px;
   font-weight: 700;
   margin: 0;
+  margin-bottom:40px;
   text-transform: uppercase;
+  background: red;
 }
 /*-- inbox --*/
 .mail-header {
@@ -3781,6 +3794,15 @@ h3.count.text-light {
 .widget_1_box2{
 	padding:0 5px;
 }
+
+.circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 180px;
+    line-height:180px;
+    text-align: center;
+    display: table-cell;
+}
 .top-at {
   float: left;
   width: 20%;
@@ -3792,6 +3814,7 @@ h3.count.text-light {
 }
 .top-on1 {
   float: left;
+  line-height : 40px;
 }
 label.round {
   background:#8BC34A;
@@ -3807,7 +3830,6 @@ label.round {
 }
 .top-on1 span {
   font-size: 0.9em;
-  color: #dc483a;
 }
 .top-on1 p {
   font-size: 1em;
@@ -4464,12 +4486,24 @@ h1.blank,h3.blank1 {
 	display:block;
 	font-size:14px;
 }
+.upload-pic{
+    margin-top:20px;
+}
+.submit-button{
+    margin-bottom:50px;
+}
+.row{
+    padding-right :10px;
+    padding-left :10px;
+}
 .widget_middle_left,.widget_bottom_left {
     padding-left: 0;
-	padding-right: 1.5em;
+	padding-right: 0;
+    padding-bottom:60px;
 }
 .widget_middle_left:nth-child(3),.widget_bottom_left:nth-child(2){
 	padding-right: 0em;
+    
 }
 .widget_middle {
     margin: 1.5em 0;
@@ -4575,7 +4609,7 @@ li.nbs-flexisel-item {
     text-decoration: none;
 }
 .panel-title {
-    font-size: 1.1em;
+    font-size: 1.5em;
 }
 .panel-default > .panel-heading {
     background: #EFEFEF;
@@ -4679,21 +4713,21 @@ span.badge1 {
 	border:1px solid #F44336;
 }
 .sign-in-form-top{
-	background:url(../images/3.jpg) no-repeat 0px -55px;
+	#background:url(../images/3.jpg) no-repeat 0px -55px;
 	display:block;
-	min-height:150px;
+	min-height:40px;
 	padding:3em 0 0;
 	text-align: center;
 }
 .sign-in-form-top p{
-	color:#fff;
+	color:#000;
 	margin:0;
 	font-size:2em;
 	font-weight:300;
 	text-decoration:none;
 }
 .sign-in-form-top p a{
-	color:#fff;
+	color:#000;
 }
 .sign-in-form-top p a:hover{
 	text-decoration:none;
@@ -4724,7 +4758,7 @@ span.badge1 {
   font-size: 0.95em;
   padding: 10px 15px 10px 37px;
   width: 98%;
-  color: #A8A8A8;
+  color: #000000;
   outline: none;
   border: 1px solid #D3D3D3;
   border-radius: 4px;
@@ -4741,6 +4775,7 @@ span.badge1 {
 .log-input-left {
   float: left;
   width: 90%;
+  color: black;
 }
 span.checkbox1 {
   float: left;
@@ -5445,7 +5480,7 @@ ul.float-right {
   height: 278px;
 }
 .panel-title {
-	font-size: 15px;
+	font-size: 20px;
     padding-left: 2em;
 }
 .panel-heading {
@@ -6195,8 +6230,8 @@ div#char {
 		min-height: 2285px !important;
 	}
 	.sign-in-form-top {
-		background: url(../images/3.jpg) no-repeat 0px -80px;
-		min-height: 115px;
+		#background: url(../images/3.jpg) no-repeat 0px -80px;
+		min-height: 55px;
 	}
 	.sign-in-form {
 		width: 66%;
@@ -6394,7 +6429,7 @@ footer {
     width: 81%;
 }
 .sign-in-form-top {
-    padding: 2em 0 0;
+    padding: 1em 0 0;
 }
 .sign-up1 h4 {
     font-size: 16px;
@@ -6801,7 +6836,7 @@ canvas#bar1 {
     font-size: 1.7em;
 }
 .sign-in-form-top {
-    min-height: 95px;
+    min-height: 55px;
 }
 span.checkbox1 {
     width: 55%;
@@ -6889,6 +6924,7 @@ span.email-title {
     padding: 0 !important;
 }
 .btn-block {
+    color: #EEE;
     width: 100% !important;
 }
 .login-form1 {
@@ -7265,7 +7301,7 @@ span.badge {
     font-size: 13px;
 }
 .profile_details ul li {
-    width: 50%;
+    width: 100%;
 }
 a.yui {
     padding: .6em .7em .5em !important;
@@ -7520,6 +7556,8 @@ canvas#line1,canvas#bar1 {
 .well {
     font-size: 13px;
 	margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .main-content2copy {
     min-height: 700px !important;
@@ -7569,7 +7607,7 @@ ul.dropdown-menu {
     height: 25px;
 }
 textarea.form-control1.control2 {
-    height: 100px;
+    height: 150px;
 }
 .form-group {
     margin-bottom: 0.2em !important;

@@ -129,15 +129,56 @@
    }
 })(jQuery);
 
-                      // Dropdowns Script
-						$(document).ready(function() {
-						  $(document).on('click', function(ev) {
-						    ev.stopImmediatePropagation();
-						    $(".dropdown-toggle").dropdown("active");
-						  });
-						});
-						
-	
+// Dropdowns Script
+$(document).ready(function() {
+  $(document).on('click', function(ev) {
+    ev.stopImmediatePropagation();
+    $(".dropdown-toggle").dropdown("active");
+  });
+  $('#profile').parsley();
+  $('#login').parsley();
+  $('#products').parsley();
+  $('#delivery').parsley();
+  /*
+  window.Parsley.on('form:error', function() {
+      // This global callback will be called for any field that fails validation.
+      //console.log('Validation failed for: ', this.$element);
+      $('html, body').animate({scrollTop: $('.thatshit').offset().top +1300}, 'slow');
+    });
+    
+    $('#products').parsley().on('form:error', function() {
+        $('html, body').animate({scrollTop: $('#page-wrapper').offset().top -100}, 'slow');
+    });
+    */
+    
+    if($('#profile').length)
+    {
+        $('#profile').parsley().on('form:error', function() {
+            $('html, body').animate({scrollTop: $('#page-wrapper').offset().top -100}, 'slow');
+        });
+        console.log('tae');
+    }
+    if($('#products').length)
+    {
+        $('#products').parsley().on('form:error', function() {
+            $('html, body').animate({scrollTop: $('#page-wrapper').offset().top -100}, 'slow');
+        });
+        console.log('lu');
+    }
+    
+    if($('#productsEdit').length)
+    {
+        $('#productsEdit').parsley().on('form:error', function() {
+            $('html, body').animate({scrollTop: $('#productsEdit').offset().top +1300}, 'slow');
+        });
+        console.log('lu');
+    }
+    
+    
+    
+});		
+
+    
      
   /************** Search ****************/
 		$(function() {
@@ -160,3 +201,136 @@
 	    });
 	});
 	new WOW().init();
+    
+    
+    
+    
+//APPLICATION SCRIPT
+
+
+//PRODUCTSSS ADD / EDIT
+function defaultImage(name , idproduct)
+{
+    $.ajax({
+        type: 'post' ,
+        url: "/zenopati/dashboard/products/default-image",
+        data: {'name' : name , 'idproduct' : idproduct} ,
+    }).done(function() {
+        location.href = "/zenopati/dashboard/products/edit/"+idproduct
+    });
+}
+function deleteImage(id , idproduct)
+{
+    $.ajax({
+        type: 'post' ,
+        url: "/zenopati/dashboard/products/delete-image",
+        data: {'id' : id , 'idproduct' : idproduct} ,
+    }).done(function() {
+        location.href = "/zenopati/dashboard/products/edit/"+idproduct
+    });
+}
+
+function deleteAttachment(id , idproduct)
+{
+    $.ajax({
+        type: 'post' ,
+        url: "/zenopati/dashboard/products/delete-attachment",
+        data: {'id' : id , 'idproduct' : idproduct} ,
+    }).done(function() {
+        location.href = "/zenopati/dashboard/products/edit/"+idproduct
+    });
+}
+
+//PURCHASE ORDER
+function onProgress(id)
+{
+    if(confirm('Are you sure?'))
+    {
+        $.ajax({
+            type: 'post' ,
+            url: "/zenopati/dashboard/purchase-order/progress",
+            data: {'id' : id } ,
+        }).done(function() {
+            location.href = "/zenopati/dashboard/purchase-order"
+        });
+    }
+    else
+        return false
+}
+
+function completed(id)
+{
+    if(confirm('Are you sure?'))
+    {
+        $.ajax({
+            type: 'post' ,
+            url: "/zenopati/dashboard/purchase-order/completed",
+            data: {'id' : id } ,
+        }).done(function() {
+            location.href = "/zenopati/dashboard/purchase-order"
+        });
+    }
+    else
+        return false
+}
+
+
+function reject(id)
+{
+    reason = $('textarea#reason-'+id).val();
+    if (reason == '')
+    {
+        $('#error-reason-'+id).html('<li class="parsley-required">This value is required.</li>');
+        $('#reason-'+id).focus();
+    }
+    else
+    {
+        $.ajax({
+            type: 'post' ,
+            url: "/zenopati/dashboard/purchase-order/reject",
+            data: {'id' : id , 'reason' : reason} ,
+        }).done(function() {
+            location.href = "/zenopati/dashboard/purchase-order"
+        });
+    }
+}
+
+//PRODUCTS LIST
+
+function deleteProduct(id)
+{
+    if(confirm('Are you sure want to delete?'))
+    {
+        $.ajax({
+            type: 'post' ,
+            url: "/zenopati/dashboard/products/delete",
+            data: {'id' : id } ,
+        }).done(function() {
+            location.href = "/zenopati/dashboard/products"
+        });
+    }
+    else
+        return false
+}
+
+function changeStatus(id , status)
+{
+    var text ='';
+    if(status == 'pending')
+        text = 'Activate Product';
+    else
+        text = 'Pending Product';
+        
+    if(confirm('Are you sure want to '+text+'?'))
+    {
+        $.ajax({
+            type: 'post' ,
+            url: "/zenopati/dashboard/products/status",
+            data: {'id' : id , 'status' : status} ,
+        }).done(function() {
+            location.href = "/zenopati/dashboard/products"
+        }); 
+    }
+    else
+        return false
+}
