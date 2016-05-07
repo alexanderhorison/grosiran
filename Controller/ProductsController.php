@@ -26,10 +26,106 @@ class ProductsController extends AppController {
         }
     }
     
-    public function products()
+    private function getPaginateProducts($data = array())
     {
-        $data = $this->Products->getProduct();
-        $this->set('data' , $data);
+        $options['fields'] = array(
+            'Products.product_id' ,
+            'Category.category_name' ,
+            'ParentCategory.parent_category_name' ,
+            'Products.product_name' ,
+            'Products.product_desc' ,
+            'Products.product_price' ,
+            'Products.default_image' ,
+            'Products.weight' ,
+            'Products.selflife' ,
+            'Products.status' ,
+            'Unit.unit_name'
+        );
+        
+        $options['joins'] = array(
+            array(
+                'table' => 'category',
+                'alias' => 'Category',
+                'type' => 'left',
+                'foreignKey' => false,
+                'conditions'=> array('Products.category_id = Category.category_id')
+            ) ,
+            array(
+                'table' => 'parent_category',
+                'alias' => 'ParentCategory',
+                'type' => 'left',
+                'foreignKey' => false,
+                'conditions'=> array('ParentCategory.parent_category_id = ParentCategory.parent_category_id')
+            ) ,
+            array(
+                'table' => 'unit',
+                'alias' => 'Unit',
+                'type' => 'left',
+                'foreignKey' => false,
+                'conditions'=> array('Unit.unit_id = Products.unit')
+            ) ,
+        );
+        
+        //product name
+        $name = array();
+        if(!empty($data['name']))
+        {   
+            $name = array(
+                'Products.product_name LIKE' => '%'.$data['name'].'%'
+            );
+        }
+        //end product name
+        
+        
+        //status
+        $statusDefault = array(
+            'Products.status !=' => 'delete'
+        );
+        $status = array();
+        if(!empty($data['status']))
+        {   
+            $status = array(
+                'Products.status' => $data['status'] == 1 ? 'pending' : 'active'
+            );
+        }
+        $options['conditions'] = array_merge($statusDefault , $status , $name);
+        //end status
+        
+        //order
+        if(!empty($data['price']))
+        {
+            $options['order'] = array(
+                'Products.product_price' => $data['price'] == 1 ? 'ASC' : 'DESC'
+            );
+        }
+        //end order
+        
+        $options['limit'] = 1;
+        
+        $this->Paginator->settings = $options;
+        try {
+            $data = $this->Paginator->paginate($this->Products);
+        } catch (Exception $e) {
+            $data = array();
+        }
+        
+        return $data;
+    }
+    
+    
+    public function index()
+    {
+        $data = $this->getPaginateProducts($this->request->query);
+        $dataProducts = '';
+        
+        if(!empty($data))
+        {
+            foreach ($data as $row => $val)
+            {
+                $dataProducts[] = array_merge($val['Products'] , $val['Category'] , $val['ParentCategory'] , $val['Unit']);
+            }
+        }
+        $this->set('data' , $dataProducts);
     }
     
     public function uploadProductsInfo()

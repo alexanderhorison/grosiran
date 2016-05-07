@@ -6,26 +6,27 @@
                     <div class="col-md-3">
                         <h4 class="panel-title"><span class="title-form">List Purchase Order</span></h4>
                     </div>
-                    <div class="col-md-offset-6">
-                        <?php echo $this->Form->create('filter'); ?>
+                    <div class="col-md-offset-4">
+                        <?php echo $this->Form->create('Filter' , array(
+                            'type' => 'get'
+                        )); ?>
                             <div class="form-group" id="horizontal-form">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <?php
                                     echo $this->Form->input('status', array(
                                         'options' => array(
-                                            '1' => 'Pending',
-                                            '2' => 'On Progress',
-                                            '3' => 'Delivering',
+                                            'pending' => 'Pending',
+                                            'on progress' => 'On Progress',
+                                            'delivering' => 'Delivering',
                                         ),
                                         'empty' => 'Sort By Status' ,
                                         'label' => false,
                                         'div' => false,
                                         'class' => 'form-control',
-                                        'onchange' => 'this.form.submit()'
                                     ));
                                     ?>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <?php
                                     echo $this->Form->input('date', array(
                                         'options' => array(
@@ -36,11 +37,10 @@
                                         'label' => false,
                                         'div' => false,
                                         'class' => 'form-control',
-                                        'onchange' => 'this.form.submit()'
                                     ));
                                     ?>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <?php
                                     echo $this->Form->input('transaction', array(
                                         'options' => array(
@@ -51,7 +51,16 @@
                                         'label' => false,
                                         'div' => false,
                                         'class' => 'form-control',
-                                        'onchange' => 'this.form.submit()'
+                                    ));
+                                    ?>
+                                </div>
+                                <div class="col-md-3">
+                                    <?php
+                                    echo $this->Form->input('Search', array(
+                                        'type' => 'submit',
+                                        'label' => false,
+                                        'div' => false,
+                                        'class' => 'form-control'
                                     ));
                                     ?>
                                 </div>
@@ -62,13 +71,12 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
+                <?php
+                if(empty($dataPO)):
+                    ?>
+                    <div class="col-md-offset-6"><h3>No Data</h3></div>
                     <?php
-                    if(empty($dataPO))
-                        {
-                            ?>
-                            <div class="col-md-offset-5"><h3>No Data</h3></div>
-                            <?php
-                        }
+                else:
                     ?>
                     <div class="online">
                         <?php 
@@ -195,18 +203,13 @@
                     <div class="col-md-offset-5">
                         <ul class="pagination" align="center">
                             <?php
-                            $this->Paginator->options(array(
-                            'url'=> array(
-                                'controller' => 'PurchaseOrder',
-                                'action' => 'index'
-                            )));
-                            //echo $this->Paginator->first();
                             echo $this->Paginator->prev('&laquo;', array('tag' => 'li', 'escape' => false), '<a href="#">&laquo;</a>', array('class' => 'prev disabled', 'tag' => 'li', 'escape' => false));
                             echo $this->Paginator->numbers(array('separator' => '', 'tag' => 'li', 'currentLink' => true, 'currentClass' => 'active', 'currentTag' => 'a'));
                             echo $this->Paginator->next('&raquo;', array('tag' => 'li', 'escape' => false), '<a href="#">&raquo;</a>', array('class' => 'prev disabled', 'tag' => 'li', 'escape' => false));
                             ?>
                         </ul>
                     </div>
+                <?php endif;?>
                 </div>
             </div>
             <div class="panel-footer" align="center">

@@ -39,13 +39,44 @@ Router::connect('/dashboard/logout',
 *
 *
 */
-//PRODUCTS
-Router::connect('/dashboard/products', 
+//UPLOAD
+Router::connect('/upload/attachment', 
     array(
-        'controller' => 'products', 
-        'action' => 'products'
+        'controller' => 'upload', 
+        'action' => 'attachment'
     )
 );
+Router::connect('/upload/images', 
+    array(
+        'controller' => 'upload', 
+        'action' => 'images'
+    )
+);
+Router::connect('/dashboard/products/default-image', 
+    array(
+        'controller' => 'upload', 
+        'action' => 'defaultimage'
+    )
+);
+Router::connect('/dashboard/products/delete-image', 
+    array(
+        'controller' => 'upload', 
+        'action' => 'deleteimages'
+    )
+);
+Router::connect('/dashboard/products/delete-attachment', 
+    array(
+        'controller' => 'upload', 
+        'action' => 'deleteattachment'
+    )
+);
+//-------END UPLOAD
+/*
+*
+*
+*
+*/
+//PRODUCTS
 Router::connect('/dashboard/products/add/step-1', 
     array(
         'controller' => 'products', 
@@ -84,45 +115,14 @@ Router::connect('/dashboard/products/status',
         'action' => 'changeStatus'
     )
 );
+Router::connect('/dashboard/products/*', 
+    array(
+        'controller' => 'products', 
+        'action' => 'index'
+    )
+);
 
 //-------END PRODUCTS
-/*
-*
-*
-*
-*/
-//UPLOAD
-Router::connect('/upload/attachment', 
-    array(
-        'controller' => 'upload', 
-        'action' => 'attachment'
-    )
-);
-Router::connect('/upload/images', 
-    array(
-        'controller' => 'upload', 
-        'action' => 'images'
-    )
-);
-Router::connect('/dashboard/products/default-image', 
-    array(
-        'controller' => 'upload', 
-        'action' => 'defaultimage'
-    )
-);
-Router::connect('/dashboard/products/delete-image', 
-    array(
-        'controller' => 'upload', 
-        'action' => 'deleteimages'
-    )
-);
-Router::connect('/dashboard/products/delete-attachment', 
-    array(
-        'controller' => 'upload', 
-        'action' => 'deleteattachment'
-    )
-);
-//-------END UPLOAD
 /*
 *
 *
@@ -157,62 +157,54 @@ Router::connect('/dashboard/purchase-order/reject',
         'action' => 'reject'
     )
 );
-Router::connect('/dashboard/purchase-order', 
+Router::connect('/dashboard/purchase-order/*', 
     array(
         'controller' => 'PurchaseOrder', 
         'action' => 'index'
     )
 );
-Router::connect('/dashboard/purchase-order/page/:page', 
-    array(
-        'controller' => 'PurchaseOrder',
-        'action' => 'index'
-    ), 
-    array(
-        'pass' => array(
-            'page'
-        ),
-        'page' => '[\d]+'
-    )
-);
+/*
+*
+*
+*ORDER HISTORY
 
-Router::connect('/dashboard/purchase-order/:sort/:direction', 
+*/
+Router::connect('/dashboard/order-history/details/:id', 
     array(
         'controller' => 'PurchaseOrder', 
-        'action' => 'index'
-    ),
+        'action' => 'details'
+    ) , 
     array(
-        'pass' => array(
-            'sort'
-        )
-    ) ,
-    array(
-        'pass' => array(
-            'direction'
-        )
+        'id' => '[0-9]+'
     )
 );
 
-
-Router::connect('/dashboard/purchase-order/page/:page/:sort/:direction', 
+Router::connect('/dashboard/order-history/*', 
     array(
-        'controller' => 'PurchaseOrder',
+        'controller' => 'history', 
         'action' => 'index'
-    ), 
-    array(
-        'pass' => array(
-            'page'
-        ),
-        'page' => '[\d]+'
-    ) ,
-    array(
-        'pass' => array(
-            'sort'
-        )
-    ) ,
-    array(
-        'pass' => array(
-            'direction'
-        )
     )
 );
+/*
+*
+*
+*
+*END ORDER HISTORY
+*/
+Router::connect('/dashboard/ticket/details/:id', 
+    array(
+        'controller' => 'ticket', 
+        'action' => 'details'
+    ) , 
+    array(
+        'id' => '[0-9]+'
+    )
+);
+
+Router::connect('/dashboard/ticket/*', 
+    array(
+        'controller' => 'ticket', 
+        'action' => 'index'
+    )
+);
+

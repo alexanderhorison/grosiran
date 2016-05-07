@@ -59,7 +59,7 @@ class Products extends AppModel {
             'data' => $id
         );
     }
-    
+    /*
     public function getProduct()
     {
         $options['fields'] = array(
@@ -122,7 +122,7 @@ class Products extends AppModel {
         return $dataProducts;
         
     }
-    
+    */
     public function getProductById($id)
     {
         $options['fields'] = array(

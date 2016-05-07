@@ -59,8 +59,8 @@
                                 </ul>
                         </li>
                         <li><a href="<?php echo $baseUrlDashboard.'purchase-order';?>"><i class="lnr lnr-spell-check"></i> <span>Purchase Order</span></a></li>
-                        <li><a href=<?php echo $baseUrlDashboard.'order-history';?>"><i class="lnr lnr-menu"></i> <span>Order History</span></a></li>
-                        <li><a href="<?php echo $baseUrlDashboard.'dispute';?>"><i class="lnr lnr-indent-increase"></i> <span>Dispute</span></a></li>
+                        <li><a href="<?php echo $baseUrlDashboard.'order-history';?>"><i class="lnr lnr-menu"></i> <span>Order History</span></a></li>
+                        <li><a href="<?php echo $baseUrlDashboard.'ticket';?>"><i class="lnr lnr-indent-increase"></i> <span>Ticket</span></a></li>
                     </ul>
                 <!--sidebar nav end-->
             </div>

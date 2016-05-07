@@ -13,6 +13,7 @@ $array = array(
         'class' => 'form-horizontal',
         'id' => 'profile' ,
         'data-parsley-validate' => true ,
+        'type' => 'file'
     ));
     ?>
     
@@ -191,15 +192,22 @@ $array = array(
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
                     <div class="form-group">
+                        <?php
+                        $disable = '';
+                        if ( isset($this->request->data['Company']['company_logo']) && !empty($this->request->data['Company']['company_logo']) )
+                        {
+                            $disable = ' disabled';
+                        }
+                        ?>
                         <div class="col-md-12" align="center">
-                            <img src="http://www.somepets.com/wp-content/gallery/hd-animal-background-wallpaper/2560x1600-Royal-Bengal-Tiger-HD-Animal-Wallpaper.jpg" width="100%" height="230px">
+                            <img src="/zenopati/webroot/files/images/logo/<?php echo $this->request->data['Company']['company_id'].'/'.$this->request->data['Company']['company_logo'];?>" width="100%" height="230px" id="result">
                         </div>
                         
-                        <div class="col-md-offset-4 col-md-4 upload-pic">
-                            <button class="btn btn-default" type="button">Upload Picture</button>
+                        <div class="col-md-offset-2 col-md-4 upload-pic">
+                            <input class="btn btn-default" type="file" value="Upload Picture" id="profpict" data-parsley-required="1" name="data[Company][company_logo]"<?php echo $disable;?>>
                         </div>
+                        
                     </div>
-                    
                     
                 </div>  
             </div>

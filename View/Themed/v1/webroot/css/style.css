@@ -2338,11 +2338,9 @@ i.icon_13{
 	left: -14%;
     top: 20%;
     border: solid transparent;
-    content: " ";
     height: 0;
-    width: 0;
+    width: 100%;
     position: absolute;
-    pointer-events: none;
     border-color: rgba(213, 242, 239, 0);
     border-right-color:#E7E7E7;
     border-width: 8px;
@@ -2380,23 +2378,21 @@ i.icon_13{
 	right:-6%;
     top: 20%;
     border: solid transparent;
-    content: " ";
     height: 0;
     width: 0;
     position: absolute;
-    pointer-events: none;
     border-color: rgba(213, 242, 239, 0);
     border-left-color:#E7E7E7;
     border-width: 8px;
     margin-top: -5px;
 }
 .activity-desc-sub h5,.activity-desc-sub1 h5{
-	font-size:14px;
+	font-size:18px;
 	color:#000;
 	margin:0 0 .5em;
 }
 .activity-desc-sub p,.activity-desc-sub1 p{
-	font-size:13px;
+	font-size:15px;
 	color:#999;
 	margin:0;
 	line-height:1.8em;

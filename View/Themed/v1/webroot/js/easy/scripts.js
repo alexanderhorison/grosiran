@@ -139,18 +139,7 @@ $(document).ready(function() {
   $('#login').parsley();
   $('#products').parsley();
   $('#delivery').parsley();
-  /*
-  window.Parsley.on('form:error', function() {
-      // This global callback will be called for any field that fails validation.
-      //console.log('Validation failed for: ', this.$element);
-      $('html, body').animate({scrollTop: $('.thatshit').offset().top +1300}, 'slow');
-    });
-    
-    $('#products').parsley().on('form:error', function() {
-        $('html, body').animate({scrollTop: $('#page-wrapper').offset().top -100}, 'slow');
-    });
-    */
-    
+  
     if($('#profile').length)
     {
         $('#profile').parsley().on('form:error', function() {
@@ -165,7 +154,7 @@ $(document).ready(function() {
         });
         console.log('lu');
     }
-    
+
     if($('#productsEdit').length)
     {
         $('#productsEdit').parsley().on('form:error', function() {
@@ -175,9 +164,25 @@ $(document).ready(function() {
     }
     
     
+    $("#profpict").change(function(){
+        readURL(this);
+    });
+    
     
 });		
 
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#result').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
     
      
   /************** Search ****************/

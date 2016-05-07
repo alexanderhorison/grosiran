@@ -61,97 +61,68 @@ class PurchaseOrderController extends AppController {
         }
     }
     
-    public function index($page = 0)
+    private function filteringPurchaseOrder($filter)
     {
-        //FOR UPLOAD DOCUMENTS
+        $conditions = array();
+        $order = array();
+        
+        if (isset($filter['status']) && !empty($filter['status'])) {
+            $conditions['PurchaseOrderHeader.status'] = $filter['status'];
+        }
+        
+        $sortTransaction = array();
+        $sortDate = array();
+        if (isset($filter['date']) && !empty($filter['date']))
+        {
+            if ($filter['date'] == 1)
+                $date = 'DESC';
+            if ($filter['date'] == 2)
+                $date = 'ASC';
+                
+            $sortDate = array(
+                'date_po' => $date
+            );
+        }
+        
+        if (isset($filter['transaction']) && !empty($filter['transaction']))
+        {
+            if ($filter['transaction'] == 1)
+                $transaction = 'ASC';
+            if ($filter['transaction'] == 2)
+                $transaction = 'DESC';
+                
+            $sortTransaction = array(
+                'total_transaction' => $transaction
+            );
+        }
+        $order = array_merge($sortDate , $sortTransaction);
+        $this->Paginator->settings = array(
+            'conditions' => $conditions ,
+            'order' => $order ,
+            'limit' => 5
+        );
+        
+        try {
+            $data = $this->Paginator->paginate($this->PurchaseOrderHeader);
+        } catch (Exception $e) {
+            $data = array();
+        }
+        
+        return $data;
+    }
+    
+    public function index()
+    {
         if($this->request->is('post') && isset($this->request->data['id']))
         {
             $this->uploadDocuments($this->request->data['id']);
         }
-        
-        //FOR SEARCHING
-        if($this->request->is('post') && !isset($this->request->data['id']))
-        {
-            $sortTransaction = array();
-            $sortDate = array();
-            
-            if(isset($this->request->data['filter']['status']) & !empty($this->request->data['filter']['status']))
-            {
-                if ($this->request->data['filter']['status'] == 1)
-                    $status = 'pending';
-                if ($this->request->data['filter']['status'] == 2)
-                    $status = 'on progress';
-                if ($this->request->data['filter']['status'] == 3)
-                    $status = 'delivering';    
-                
-                $conditions['conditions'] = array(
-                    'status' => $status
-                );
-            }
-            
-            if (isset($this->request->data['filter']['date']) && !empty($this->request->data['filter']['date']))
-            {
-                if ($this->request->data['filter']['date'] == 1)
-                    $date = 'DESC';
-                if ($this->request->data['filter']['date'] == 2)
-                    $date = 'ASC';
-                    
-                $sortDate = array(
-                    'date_po' => $date
-                );
-                $conditions['order'] = array_merge($sortDate , $sortTransaction);
-            }
-            
-            
-            if (isset($this->request->data['filter']['transaction']) && !empty($this->request->data['filter']['transaction']))
-            {
-                if ($this->request->data['filter']['transaction'] == 1)
-                    $transaction = 'ASC';
-                if ($this->request->data['filter']['transaction'] == 2)
-                    $transaction = 'DESC';
-                    
-                $sortTransaction = array(
-                    'total_transaction' => $transaction
-                );
-                $conditions['order'] = array_merge($sortDate , $sortTransaction);
-            }
-            $conditions['limit'] = 2;
-        }
-        //pr($this->request);die;
-        
-        $this->request->data = array(
-            'filter' => array(
-                'status' => isset($this->request->data['filter']['status']) && !empty($this->request->data['filter']['status']) ? $this->request->data['filter']['status']: '' ,
-                'date' => isset($this->request->data['filter']['date']) && !empty($this->request->data['filter']['date']) ? $this->request->data['filter']['date']: '' ,
-                'transaction' => isset($this->request->data['filter']['transaction']) && !empty($this->request->data['filter']['transaction']) ? $this->request->data['filter']['transaction']: '' ,
-            )
-        );
-        
-        //set for first time
-        if(!isset($conditions))
-        {
-            $conditions = array(
-                'limit' => 2
-            );
-        }
-        /*
-        if(isset($this->request->params['sort']))
-        {
-            $conditions['order'] = array(
-                $this->request->params['sort'] => $this->request->params['direction']
-            );
-        }
-        //pr($conditions);die;
-        */
-        $this->Paginator->settings = $conditions;
-        $this->request->params['named']['page'] = $page;
-        $data = $this->Paginator->paginate($this->PurchaseOrderHeader);
-        
+    
+        $data = $this->filteringPurchaseOrder($this->request->query);
         $dataPO = array();
-        if(!empty($data))
-        {
-            foreach($data as $row => $val)
-            {
+        
+        if (!empty($data)) {
+            foreach ($data as $row => $val) {
                 $consumer_name = $this->Consumer->find('first' , array('conditions' => array('consumer_id' => $val['PurchaseOrderHeader']['consumer_id'])));
                 $name = $consumer_name['Consumer']['consumer_name'];
                 
@@ -165,6 +136,7 @@ class PurchaseOrderController extends AppController {
                 ));
             }
         }
+        
         $this->set('dataPO' , $dataPO);
     }
     
@@ -180,6 +152,7 @@ class PurchaseOrderController extends AppController {
         $this->set('consumerData' , $consumerData);
         $this->set('detailPO' , $detailPO);
         $this->set('companyDetails' , $companyDetails);
+        
     }
     
     public function progress()
